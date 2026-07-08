@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/controls.tsx","./src/components/worddisplay.tsx","./src/hooks/usespeedreader.ts","./src/lib/words.test.ts","./src/lib/words.ts"],"errors":true,"version":"5.9.3"}
