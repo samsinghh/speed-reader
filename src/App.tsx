@@ -23,7 +23,13 @@ type Screen = "setup" | "reading";
 export default function App() {
   const [text, setText] = useState("");
   const [wpm, setWpm] = useState(DEFAULT_WPM);
+  const [wpmText, setWpmText] = useState(String(DEFAULT_WPM));
   const [screen, setScreen] = useState<Screen>("setup");
+
+  function setSpeed(next: number) {
+    setWpm(next);
+    setWpmText(String(next));
+  }
 
   const reader = useSpeedReader(text, wpm);
   const { hasText, play, pause, toggle, restart, next, prev } = reader;
@@ -114,16 +120,38 @@ export default function App() {
         <section className="block">
           <div className="rowhead">
             <span>Speed</span>
-            <span className="rowhead__count">{wpm} wpm</span>
+            <span className="wpm-field">
+              <input
+                className="wpm-input"
+                type="number"
+                min={MIN_WPM}
+                max={MAX_WPM}
+                value={wpmText}
+                onChange={(e) => {
+                  const raw = e.target.value;
+                  if (raw === "") {
+                    setWpmText("");
+                    return;
+                  }
+                  const n = Number(raw);
+                  if (Number.isNaN(n)) return;
+                  const bounded = Math.min(MAX_WPM, Math.max(0, Math.round(n)));
+                  setSpeed(bounded);
+                }}
+                onBlur={() => setSpeed(clampWpm(Number(wpmText)))}
+                aria-label="Words per minute"
+              />
+              wpm
+            </span>
           </div>
           <input
             className="slider"
             type="range"
             min={MIN_WPM}
             max={MAX_WPM}
-            step={10}
+            step={1}
             value={wpm}
-            onChange={(e) => setWpm(clampWpm(Number(e.target.value)))}
+            onChange={(e) => setSpeed(clampWpm(Number(e.target.value)))}
             aria-label="Words per minute"
           />
         </section>

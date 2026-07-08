@@ -74,6 +74,39 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.wpm-field {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.wpm-input {
+  width: 3.5ch;
+  padding: 0 0 1px;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.wpm-input:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+.wpm-input::-webkit-outer-spin-button,
+.wpm-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .field {
   width: 100%;
   margin-top: 1rem;
@@ -111,19 +144,24 @@ body {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   background: var(--ink);
   border: none;
-  border-radius: 0;
+  border-radius: 50%;
+  transition: transform 0.1s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
 }
 
 .slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   background: var(--ink);
   border: none;
-  border-radius: 0;
+  border-radius: 50%;
 }
 
 .slider:focus-visible {
