@@ -1,5 +1,5 @@
 <p align="center">
-  Enjoyed watching the <b>speed-reading</b> TikToks and wanted to build my own version of the player
+  enjoyed watching the speed-reading tiktoks and wanted to build my own version of the player
 </p>
 
 <p align="center">
